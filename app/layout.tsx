@@ -4,6 +4,7 @@ import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import SignIn from './components/SignInPage'
 import AuthProvider from './auth/Provider'
+import { Theme } from '@radix-ui/themes';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,9 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+
         <AuthProvider>
+
         <Toaster />
         {children}
+
         </AuthProvider>
         </body>
     </html>
