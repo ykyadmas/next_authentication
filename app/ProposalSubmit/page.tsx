@@ -11,9 +11,21 @@ type ProposalForm=z.infer<typeof CreateProposalSchema>
 
 const ProposalSubmit = () => {
     const router=useRouter();
-    const {register,handleSubmit,formState:{errors}}=useForm<ProposalForm>({
+    const {register,handleSubmit,formState:{errors ,isSubmitting}}=useForm<ProposalForm>({
       resolver:zodResolver(CreateProposalSchema)
     });
+    
+    const onSubmitProposal=handleSubmit(async (data)=>{
+
+      try {
+      await axios.post('/api/proposal',data);
+      router.push('/ProofSubmit');
+          
+      } catch (error) {
+          setError("An expected error occurred.");
+      }
+      })
+
     const [error,setError]=useState('');
     return (
     <div> 
@@ -21,20 +33,9 @@ const ProposalSubmit = () => {
   <span>{error}</span>
 </div>
 }
-        <form 
-
+ <form 
         className='flex flex-col ml-72 mt-32 gap-4' 
-        onSubmit={handleSubmit(async (data)=>{
-
-            try {
-            await axios.post('/api/proposal',data);
-            router.push('/ProofSubmit');
-                
-            } catch (error) {
-                setError("An expected error occurred.");
-            }
-            
-            })}>
+        onSubmit={onSubmitProposal}>
         <input  
         {...register('firstName')}
         type="text"
@@ -53,7 +54,11 @@ const ProposalSubmit = () => {
          placeholder="Type Your Car Model" 
          className="input input-bordered input-secondary w-full max-w-xs" />
         {errors.model && <p className='text-red-500'>{errors.model.message}</p>}
-         <button type="submit" className='btn btn-neutral w-full max-w-xs'>Submit Proposal</button>
+         <button 
+         type="submit" 
+         className='btn btn-neutral w-full max-w-xs'
+         disabled={isSubmitting}
+         >{isSubmitting ? "Submit Proposal...":"Submit"}</button>
         </form>
     </div>
   )
