@@ -3,20 +3,21 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { z } from 'zod'
+import { CreateProposalSchema } from '../validationSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface ProposalForm{
-    firstName: string;
-    lastName: string;
-    model: string;
-}
+type ProposalForm=z.infer<typeof CreateProposalSchema>
+
 const ProposalSubmit = () => {
     const router=useRouter();
-
-    const {register,handleSubmit}=useForm<ProposalForm>();
+    const {register,handleSubmit,formState:{errors}}=useForm<ProposalForm>({
+      resolver:zodResolver(CreateProposalSchema)
+    });
     const [error,setError]=useState('');
     return (
     <div> 
-        {error && <div role="alert" className="alert alert-error w-80 mt-16 ml-64">
+    {error && <div role="alert" className="alert alert-error w-80 mt-16 ml-64">
   <span>{error}</span>
 </div>
 }
@@ -39,16 +40,19 @@ const ProposalSubmit = () => {
         type="text"
          placeholder="Enter your firstName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
+         {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}
         <input 
      {...register('lastName')}
         type="text"
          placeholder="Enter your lastName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
+        {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
          <input 
         {...register('model')}
          type="text"
          placeholder="Type Your Car Model" 
          className="input input-bordered input-secondary w-full max-w-xs" />
+        {errors.model && <p className='text-red-500'>{errors.model.message}</p>}
          <button type="submit" className='btn btn-neutral w-full max-w-xs'>Submit Proposal</button>
         </form>
     </div>

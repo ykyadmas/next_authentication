@@ -1,14 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from 'zod';
+import { CreateProposalSchema } from "./CreateProposalSchema";
 
 
-const CreateProposalSchema =z.object({
-
-firstName:z.string().min(5).max(20),
-lastName:z.string().min(5).max(20),
-model:z.string().min(1).max(20)
-})
 export async  function POST(request: NextRequest){
     const body=await request.json();
     const validation=CreateProposalSchema.safeParse(body);
