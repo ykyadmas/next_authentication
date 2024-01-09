@@ -1,7 +1,11 @@
+import ProposalStatus from '@/app/components/ProposalStatus'
 import { prisma } from '@/lib/prisma'
-import React from 'react'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+
 
 const Proposal = async() => {
+  
   const proposal=await prisma.proposal.findMany()
   return (
     <div className="overflow-x-auto">
@@ -16,14 +20,18 @@ const Proposal = async() => {
     </thead>
      {proposal.map((proposals) =>(
     <tbody>
-    <td>{proposals.id}</td>
+      <Link className='hover:underline' href={`/admin/proposal/${proposals.id}`}>
+        
+      <td key={proposals.id}>{proposals.id}</td>
+      </Link>
       <td>{proposals.firstName}</td>
       <td>{proposals.lastName}</td>
       <td>{proposals.model}</td>
-      <td>{proposals.status}</td>
+      <td>
+      <ProposalStatus status={proposals.status}/>
+      </td>
       <td>{proposals.createdAt.toDateString()}</td>
       </tbody>
-
      ))}
   </table>
 </div>

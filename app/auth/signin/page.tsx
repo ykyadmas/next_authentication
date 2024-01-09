@@ -64,7 +64,7 @@ type="submit"
 disabled={isSubmitting}
 >{isSubmitting ? "Sign In...":"Sign In"}</button>
 <p>You Don't Have An Account
-<Link className="text-blue-900 " href="/auth/signup">
+<Link className="text-blue-900 p-2" href="/auth/signup">
   Sign Up</Link>
 </p>
 </form>
