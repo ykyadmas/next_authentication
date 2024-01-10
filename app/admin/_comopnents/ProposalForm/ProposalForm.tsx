@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod'
-import { validationSchema } from '../validationSchema';
+import { validationSchema } from '@/app/validationSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Proposal } from '@prisma/client';
 
@@ -12,21 +12,17 @@ type ProposalForm=z.infer<typeof validationSchema>
 
 
 
-const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
+const ProposalForm = ({proposal}:{proposal:Proposal}) => {
     const router=useRouter();
     const {register,handleSubmit,formState:{errors ,isSubmitting}}=useForm<ProposalForm>({
       resolver:zodResolver(validationSchema)
     });
     
     const onSubmitProposal=handleSubmit(async (data)=>{
-
       try {
         if(proposal)
         axios.patch('/api/proposal/'+proposal.id,data)
-      else
-      await axios.post('/api/proposal',data);
-      router.push('/ProofSubmit');
-          
+        router.push(`/admin/proposal/${proposal.id}`);
       } catch (error) {
           setError("An expected error occurred.");
       }
@@ -69,10 +65,10 @@ const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
          type="submit" 
          className='btn btn-neutral w-full max-w-xs'
          disabled={isSubmitting}
-         >{proposal ? 'Update Proposal' : 'Submit Proposal'}{isSubmitting ? "Submit Proposal...":"Submit"}</button>
+         >{proposal ? 'Update Proposal' : 'Submit Proposal'}</button>
         </form>
     </div>
   )
 }
 
-export default ProposalSubmit
+export default ProposalForm

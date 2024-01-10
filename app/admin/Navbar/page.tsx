@@ -19,7 +19,6 @@ const Navbar = () => {
   const currentPath=usePathname();
   console.log(currentPath)
   return (
-
     <div>
      <div className='flex flex-row mt-16 ml-16 border-b gap-4'>
      {
@@ -29,7 +28,6 @@ const Navbar = () => {
           "bg-gray-700 px-3 rounded-full text-white":links.path===currentPath,
           "white":links.path !==currentPath,
           })}
-
            href={links.path} 
            key={links.title}>
             {links.title}

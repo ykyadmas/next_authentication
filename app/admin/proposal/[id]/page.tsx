@@ -1,5 +1,7 @@
+import EditButton from '@/app/components/EditButton'
 import ProposalStatus from '@/app/components/ProposalStatus'
 import { prisma } from '@/lib/prisma'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -16,11 +18,32 @@ if(!proposal)
 notFound();
   return (
     <div>
-      <p className='font-bold'>{proposal.firstName}</p>
-      <p>{proposal.lastName}</p>
-      <p>{proposal.model}</p>
-      <p><ProposalStatus status={proposal.status}/></p>
-      <p>{proposal.createdAt.toDateString()}</p>
+    <div>
+    <table className="table">
+    <thead>
+         <th></th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Model</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th></th>
+     </thead>
+    <tbody>
+      <td>{proposal.id}</td>
+      <td>{proposal.firstName}</td>
+      <td>{proposal.lastName}</td>
+      <td>{proposal.model}</td>
+      <td><ProposalStatus status={proposal.status}/></td>
+      <td>{proposal.createdAt.toDateString()}</td>
+      <td><EditButton ProposalId={proposal.id}/></td>
+
+      </tbody>
+  </table>
+    </div>
+    <div>
+      
+    </div>
     </div>
   )
 }

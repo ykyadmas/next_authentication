@@ -1,14 +1,19 @@
-import ProposalStatus from '@/app/components/ProposalStatus'
 import { prisma } from '@/lib/prisma'
+import dynamic from 'next/dynamic';
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 
+const ProposalStatus = dynamic(
+  () => import('@/app/components/ProposalStatus'),
+  { 
+    ssr: false,
+  }
+);
 const Proposal = async() => {
-  
   const proposal=await prisma.proposal.findMany()
   return (
-    <div className="overflow-x-auto">
+  <div className="overflow-x-auto">
   <table className="table">
     <thead>
          <th></th>
@@ -17,11 +22,13 @@ const Proposal = async() => {
         <th>Model</th>
         <th>Status</th>
         <th>Created</th>
-    </thead>
+        <th></th>
+     </thead>
      {proposal.map((proposals) =>(
     <tbody>
-      <Link className='hover:underline' href={`/admin/proposal/${proposals.id}`}>
-        
+      <Link 
+      className='hover:underline' 
+      href={`/admin/proposal/${proposals.id}`}>
       <td key={proposals.id}>{proposals.id}</td>
       </Link>
       <td>{proposals.firstName}</td>
