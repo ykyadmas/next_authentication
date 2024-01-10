@@ -1,4 +1,4 @@
-import ProposalForm from '@/app/admin/_comopnents/ProposalForm/ProposalForm';
+import ProposalForm from '@/app/admin/_comopnents/ProposalSubmit/ProposalForm';
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation';
 import React from 'react'

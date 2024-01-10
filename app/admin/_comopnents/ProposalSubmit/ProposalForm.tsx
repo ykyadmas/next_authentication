@@ -23,6 +23,7 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
         if(proposal)
         axios.patch('/api/proposal/'+proposal.id,data)
         router.push(`/admin/proposal/${proposal.id}`);
+        router.refresh();
       } catch (error) {
           setError("An expected error occurred.");
       }
@@ -35,6 +36,7 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
   <span>{error}</span>
 </div>
 }
+
  <form 
         className='flex flex-col ml-72 mt-32 gap-4' 
         onSubmit={onSubmitProposal}>
@@ -67,6 +69,7 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
          disabled={isSubmitting}
          >{proposal ? 'Update Proposal' : 'Submit Proposal'}</button>
         </form>
+
     </div>
   )
 }

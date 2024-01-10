@@ -30,3 +30,4 @@ const updateProposal = await prisma.proposal.update({
 });
 return NextResponse.json(updateProposal);
 }
+

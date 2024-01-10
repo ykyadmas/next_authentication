@@ -12,7 +12,7 @@ type ProposalForm=z.infer<typeof validationSchema>
 
 
 
-const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
+const ProposalSubmit = () => {
     const router=useRouter();
     const {register,handleSubmit,formState:{errors ,isSubmitting}}=useForm<ProposalForm>({
       resolver:zodResolver(validationSchema)
@@ -21,12 +21,9 @@ const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
     const onSubmitProposal=handleSubmit(async (data)=>{
 
       try {
-        if(proposal)
-        axios.patch('/api/proposal/'+proposal.id,data)
-      else
       await axios.post('/api/proposal',data);
       router.push('/ProofSubmit');
-          
+      router.refresh();          
       } catch (error) {
           setError("An expected error occurred.");
       }
@@ -44,14 +41,12 @@ const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
         onSubmit={onSubmitProposal}>
         <input  
         {...register('firstName')}
-        defaultValue={proposal?.firstName}
         type="text"
          placeholder="Enter your firstName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
          {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}
         <input 
      {...register('lastName')}
-     defaultValue={proposal?.lastName}
 
         type="text"
          placeholder="Enter your lastName" 
@@ -61,7 +56,6 @@ const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
         {...register('model')}
          type="text"
          placeholder="Type Your Car Model" 
-         defaultValue={proposal?.model}
 
          className="input input-bordered input-secondary w-full max-w-xs" />
         {errors.model && <p className='text-red-500'>{errors.model.message}</p>}
@@ -69,7 +63,7 @@ const ProposalSubmit = ({proposal}:{proposal:Proposal}) => {
          type="submit" 
          className='btn btn-neutral w-full max-w-xs'
          disabled={isSubmitting}
-         >{proposal ? 'Update Proposal' : 'Submit Proposal'}{isSubmitting ? "Submit Proposal...":"Submit"}</button>
+         >{isSubmitting ? "Submit Proposal...":"Submit"}</button>
         </form>
     </div>
   )
