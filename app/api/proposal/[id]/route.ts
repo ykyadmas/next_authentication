@@ -21,11 +21,8 @@ return NextResponse.json(
 
 const updateProposal = await prisma.proposal.update({
     where: {id:proposal.id},
-    data:{
-        firstName:body.firstName,
-        lastName:body.lastName,
-        model:body.model
-    },
+    data:{firstName:body.firstName,lastName:body.lastName,model:body.model,woreda:body.woreda,kebele:body.kebele,phoneNo:body.phoneNo,occupation:body.occupation,startDate:body.startDate,endDate:body.endDate,proposedDate:body.proposedDate,branch:body.branch}
+
   
 });
 return NextResponse.json(updateProposal);

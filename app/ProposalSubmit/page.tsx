@@ -53,11 +53,60 @@ const ProposalSubmit = () => {
          className="input input-bordered input-secondary w-full max-w-xs" />
         {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
          <input 
+        {...register('woreda')}
+         type="text"
+         placeholder="Write Your Address/Woreda" 
+
+         className="input input-bordered input-secondary w-full max-w-xs" />
+{errors.woreda && <p className='text-red-500'>{errors.woreda.message}</p>}
+
+  <input 
+        {...register('kebele')}
+         type="text"
+         placeholder="Write Your Address/Kebele" 
+
+         className="input input-bordered input-secondary w-full max-w-xs" />
+           <input 
+        {...register('phoneNo')}
+         type="text"
+         placeholder="Write Your Phone Number with +251" 
+
+         className="input input-bordered input-secondary w-full max-w-xs" />
+           <input 
+        {...register('occupation')}
+         type="text"
+         placeholder="Write Your Job/Occupation" 
+
+         className="input input-bordered input-secondary w-full max-w-xs" />
+
+<input 
+        {...register('startDate')}
+         type="date"
+         className="input input-bordered input-secondary w-full max-w-xs" />
+
+<input 
+        {...register('endDate')}
+         type="date"
+         className="input input-bordered input-secondary w-full max-w-xs" />
+         
+<input 
         {...register('model')}
          type="text"
          placeholder="Type Your Car Model" 
 
          className="input input-bordered input-secondary w-full max-w-xs" />
+
+<input 
+        {...register('proposedDate')}
+         type="date"
+         className="input input-bordered input-secondary w-full max-w-xs" />
+           <input 
+        {...register('branch')}
+         type="text"
+         placeholder="Write Branch" 
+
+         className="input input-bordered input-secondary w-full max-w-xs" />
+
         {errors.model && <p className='text-red-500'>{errors.model.message}</p>}
          <button 
          type="submit" 

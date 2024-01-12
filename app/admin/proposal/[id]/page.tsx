@@ -25,6 +25,14 @@ notFound();
         <th>FirstName</th>
         <th>LastName</th>
         <th>Model</th>
+        <th>woreda</th>
+        <th>kebele</th>
+        <th>phoneNo</th>
+        <th>Occupation</th>
+        <th>start date</th>
+        <th>end Date</th>
+        <th>proposed Date</th>
+        <th>Branch</th>
         <th>Status</th>
         <th>Created</th>
         <th></th>
@@ -34,6 +42,14 @@ notFound();
       <td>{proposal.firstName}</td>
       <td>{proposal.lastName}</td>
       <td>{proposal.model}</td>
+      <td>{proposal.woreda}</td>
+      <td>{proposal.kebele}</td>
+      <td>{proposal.phoneNo}</td>
+      <td>{proposal.occupation}</td>
+      <td>{proposal.startDate}</td>
+      <td>{proposal.endDate}</td>
+      <td>{proposal.proposedDate}</td>
+      <td>{proposal.branch}</td>
       <td><ProposalStatus status={proposal.status}/></td>
       <td>{proposal.createdAt.toDateString()}</td>
       <td><EditButton ProposalId={proposal.id}/></td>

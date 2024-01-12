@@ -11,7 +11,7 @@ export async  function POST(request: NextRequest){
     }
 
 const newProposal=await prisma.proposal.create({
-    data:{firstName:body.firstName,lastName:body.lastName,model:body.model}
+    data:{firstName:body.firstName,lastName:body.lastName,model:body.model,woreda:body.woreda,kebele:body.kebele,phoneNo:body.phoneNo,occupation:body.occupation,startDate:body.startDate,endDate:body.endDate,proposedDate:body.proposedDate,branch:body.branch}
 }) 
 return NextResponse.json(newProposal,{status:200});   
 }

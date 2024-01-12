@@ -2,14 +2,9 @@ import { prisma } from '@/lib/prisma'
 import dynamic from 'next/dynamic';
 import Link from 'next/link'
 import React from 'react'
+import ProposalStatus from '@/app/components/ProposalStatus';
 
 
-const ProposalStatus = dynamic(
-  () => import('@/app/components/ProposalStatus'),
-  { 
-    ssr: false,
-  }
-);
 const Proposal = async() => {
   const proposal=await prisma.proposal.findMany()
   return (
@@ -20,8 +15,16 @@ const Proposal = async() => {
         <th>FirstName</th>
         <th>LastName</th>
         <th>Model</th>
+        <th>woreda</th>
+        <th>kebele</th>
+        <th>phoneNo</th>
+        <th>Occupation</th>
+        <th>start date</th>
+        <th>end Date</th>
+        <th>proposed Date</th>
+        <th>Branch</th>
         <th>Status</th>
-        <th>Created</th>
+        <th>Created At</th>
         <th></th>
      </thead>
      {proposal.map((proposals) =>(
@@ -34,6 +37,15 @@ const Proposal = async() => {
       <td>{proposals.firstName}</td>
       <td>{proposals.lastName}</td>
       <td>{proposals.model}</td>
+      <td>{proposals.woreda}</td>
+      <td>{proposals.kebele}</td>
+      <td>{proposals.phoneNo}</td>
+      <td>{proposals.occupation}</td>
+      <td>{proposals.startDate}</td>
+      <td>{proposals.endDate}</td>
+      <td>{proposals.proposedDate}</td>
+      <td>{proposals.branch}</td>
+
       <td>
       <ProposalStatus status={proposals.status}/>
       </td>

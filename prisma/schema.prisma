@@ -58,19 +58,33 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-model Proposal{
-  id  Int @id @default(autoincrement())
-  firstName       String
-  lastName        String
-  model          String
-  status Status @default(IN_PROGRESS)
-  createdAt  DateTime   @default(now())
+
+model Proposal {
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  //Proposer Address
+  woreda    String
+  kebele    String
+  phoneNo   String
+
+  //Occupation
+  occupation String
+  //period of Insurance
+  startDate  String 
+  endDate    String 
+
+  model     String  
+  proposedDate      String 
+  branch    String
+  status    Status   @default(IN_PROGRESS)
+  createdAt DateTime @default(now())
   // user   User   @relation(fields: [userId], references: [id])
   // userId String @unique
 }
 
-enum Status{
-APPROVED
-IN_PROGRESS
-CANCELLED
+enum Status {
+  APPROVED
+  IN_PROGRESS
+  CANCELLED
 }
