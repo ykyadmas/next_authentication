@@ -19,9 +19,12 @@ export default function SignIn() {
   <div>
   <p>{`${session.user.firstName} ${session.user.lastName}`}</p>
   <Link href="/admin" className='btn btn-primary'>Home page</Link>
+  
+  <>
+{session.user?.role=="ADMIN" && <Link className='btn btn-primary' href="/admin">Amin</Link>}
+  </>
   <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link>
   <Link href="/api/auth/signout" className='btn btn-primary'>Signout</Link>
-
   </div>
 ):(
   <div className='flex gap-4'>

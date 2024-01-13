@@ -45,6 +45,7 @@ model User {
   password        String
   confirmPassword String
   emailVerified   DateTime?
+  role            Role       @default(USER)
   image           String?
   accounts        Account[]
   sessions        Session[]
@@ -87,4 +88,8 @@ enum Status {
   APPROVED
   IN_PROGRESS
   CANCELLED
+}
+enum Role {
+ USER
+ ADMIN
 }

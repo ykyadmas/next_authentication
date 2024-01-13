@@ -33,14 +33,12 @@ const signin=(props:Props)=>{
       redirect:false,
       username:data.email,
       password:data.password,
-
     })
 if(!result?.ok){
   toast.error("Sign Failed");
   return;
 }
 router.push(props.callbackUrl? props.callbackUrl:"/")
-
   }
 
 return(
