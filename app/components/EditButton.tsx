@@ -6,7 +6,7 @@ const EditButton = ({ProposalId}:{ProposalId:number}) => {
     <div>
         <Link href={`/admin/proposal/${ProposalId}/edit`} className='btn btn-primary'>Edit</Link>
      
-        <Link href="/admin/proposal" className='btn btn-success'>back</Link> 
+        {/* <Link href="/admin/proposal" className='btn btn-success'>back</Link>  */}
     </div>
   )
 }

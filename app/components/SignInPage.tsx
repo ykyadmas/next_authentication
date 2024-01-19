@@ -7,7 +7,12 @@ import ProposalSubmit from '../ProposalSubmit/page';
 // import { useRouter } from 'next/navigation';
 // import { useEffect } from 'react';
 import Homepgae from './HomePage';
-
+import HeroSection from './HeroSection';
+import ProjectCard from './ProjectCard';
+import Footer from './Footer';
+import About from './About';
+import Contact from './Contact';
+import Location from './Location';
 export default function SignIn() {
 
   const{data:session}=useSession();
@@ -15,8 +20,9 @@ export default function SignIn() {
 
   return (
     <div>
+
 {session && session.user ? (
- 
+     <div>
   <div className='flex justify-end bg-gray-500 gap-4'>
   <p>{`${session.user.firstName} ${session.user.lastName}`}</p>
   <Link href="/" className='btn btn-primary'>Home</Link>
@@ -25,6 +31,13 @@ export default function SignIn() {
   </>
   <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link>
   <Link href="/api/auth/signout" className='btn btn-primary'>Signout</Link>
+  </div>
+<HeroSection />
+<About />
+<ProjectCard />
+<Contact />
+<Location />
+<Footer />
   </div>
 ):(
  <div>

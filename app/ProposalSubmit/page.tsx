@@ -37,82 +37,84 @@ const ProposalSubmit = () => {
 </div>
 }
  <form 
-        className='flex flex-col ml-72 mt-32 gap-4' 
+       
         onSubmit={onSubmitProposal}>
+    <div  className='grid grid-cols-4 ml-10 mt-16 gap-2' >
+    <label className='ml-16'>First Name:</label>
         <input  
         {...register('firstName')}
         type="text"
          placeholder="Enter your firstName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
-         {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}
+         {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}     
+     <label className='ml-16'>Last Name:</label>
         <input 
      {...register('lastName')}
-
         type="text"
          placeholder="Enter your lastName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
         {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
+     <label className='ml-16'>Woreda:</label> 
          <input 
         {...register('woreda')}
          type="text"
          placeholder="Write Your Address/Woreda" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
 {errors.woreda && <p className='text-red-500'>{errors.woreda.message}</p>}
-
+     <label className='ml-16'>Kebele:</label>
   <input 
         {...register('kebele')}
          type="text"
          placeholder="Write Your Address/Kebele" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
+     <label className='ml-16'>Phone Number:</label>
            <input 
         {...register('phoneNo')}
          type="text"
          placeholder="Write Your Phone Number with +251" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
+     <label className='ml-16'>Occupation/Job:</label>
            <input 
         {...register('occupation')}
          type="text"
          placeholder="Write Your Job/Occupation" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
-
+     <label className='ml-16'>Policy Start Date:</label>
 <input 
         {...register('startDate')}
          type="date"
          className="input input-bordered input-secondary w-full max-w-xs" />
-
+     <label className='ml-16'>Policy End Date:</label>
 <input 
         {...register('endDate')}
          type="date"
          className="input input-bordered input-secondary w-full max-w-xs" />
-         
+     <label className='ml-16'>Car Model:</label>
 <input 
         {...register('model')}
          type="text"
          placeholder="Type Your Car Model" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
-
+     <label className='ml-16'>Proposed Date:</label>
 <input 
         {...register('proposedDate')}
          type="date"
          className="input input-bordered input-secondary w-full max-w-xs" />
+
+     <label className='ml-16'>Branch:</label>
            <input 
         {...register('branch')}
          type="text"
          placeholder="Write Branch" 
-
          className="input input-bordered input-secondary w-full max-w-xs" />
-
-        {errors.model && <p className='text-red-500'>{errors.model.message}</p>}
-         <button 
+    </div>
+    <div className='flex justify-center mt-10'>
+    <button 
          type="submit" 
-         className='btn btn-neutral w-full max-w-xs'
+         className='btn btn-neutral w-full max-w-xs flex'
          disabled={isSubmitting}
          >{isSubmitting ? "Submit Proposal...":"Submit"}</button>
+    </div>
         </form>
     </div>
   )

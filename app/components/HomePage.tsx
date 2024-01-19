@@ -20,7 +20,6 @@ export default function Homepgae () {
                 className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md ">
                 Get Started
               </Link>
-            
             </div>
           </div>
         </div>
@@ -30,7 +29,7 @@ export default function Homepgae () {
             src="/insurance.jpg"
               width="616"
               height="700"
-              className='ml-8'
+              className='rotate-45 ml-8'
               alt="Hero Illustration"
               loading="eager"
             />

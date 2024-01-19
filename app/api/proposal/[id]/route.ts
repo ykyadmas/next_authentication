@@ -27,4 +27,22 @@ const updateProposal = await prisma.proposal.update({
 });
 return NextResponse.json(updateProposal);
 }
-
+export async function DELETE(request: NextRequest,
+    {params}: {params: {id:string}}){
+        const proposal=await prisma.proposal.findUnique({
+            where: {id:parseInt(params.id)}
+        });
+        if(!proposal) 
+        return NextResponse.json(
+            {error:'Invalid Proposal'},
+            {status:404}
+            );
+            await prisma.proposal.delete({
+            where:{id:proposal.id}
+            })
+        // const deleteProposal=await prisma.proposal.delete({
+        //     where: {id:parseInt(params.id)}
+        // });
+        return NextResponse.json({});
+    }
+//deleteProposal

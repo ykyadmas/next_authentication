@@ -93,3 +93,9 @@ enum Role {
  USER
  ADMIN
 }
+model Message{
+  id        Int    @id @default(autoincrement())
+  emailMessage String 
+  subject String
+  message String
+}
