@@ -29,7 +29,7 @@ export default function Homepgae () {
             src="/insurance.jpg"
               width="616"
               height="700"
-              className='rotate-45 ml-8'
+              className='ml-8'
               alt="Hero Illustration"
               loading="eager"
             />

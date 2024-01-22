@@ -9,7 +9,7 @@ import { TypeAnimation } from 'react-type-animation'
 const HeroSection = () => {
   
   return (
-    <section className='bg-primary-content'>
+    <section className='bg-primary-content' id='home'>
      
       <div className='grid grid-cols-1 sm:grid-cols-12'>
         <div className='col-span-7 place-self-center text-center sm:text-left'>

@@ -42,8 +42,8 @@ router.push(props.callbackUrl? props.callbackUrl:"/")
   }
 
 return(
-<div>
-<form className="flex flex-col w-1/2 mx-auto my-12 p-4 " onSubmit={handleSubmit(onSubmit)}>
+<section className="flex max-h-fit bg-gradient-to-br from-yellow-950 to-indigo-950 via-pink-950">
+<form className='flex flex-col m-auto my-12 p-4 w-1/3' onSubmit={handleSubmit(onSubmit)}>
 <input 
 {...register("email")}
 type="text"
@@ -66,7 +66,7 @@ disabled={isSubmitting}
   Sign Up</Link>
 </p>
 </form>
-</div>
+</section>
 )
 }
 

@@ -25,11 +25,16 @@ export default function SignIn() {
      <div>
   <div className='flex justify-end bg-gray-500 gap-4'>
   <p>{`${session.user.firstName} ${session.user.lastName}`}</p>
-  <Link href="/" className='btn btn-primary'>Home</Link>
   <>
 {session.user?.role=="ADMIN" && <Link className='btn btn-primary' href="/admin">Admin</Link>}
   </>
-  <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link>
+  {/* <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link> */}
+  <Link href="#home" className='mt-2 text-white'>Home</Link>
+  <Link href="#about" className='mt-2 text-white'>About</Link>
+  <Link href="#proposal" className='mt-2 text-white'>Proposals</Link>
+  <Link href="#contact" className='mt-2 text-white'>Contact</Link>
+ 
+
   <Link href="/api/auth/signout" className='btn btn-primary'>Signout</Link>
   </div>
 <HeroSection />

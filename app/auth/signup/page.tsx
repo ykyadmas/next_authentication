@@ -1,5 +1,4 @@
 "use client"
-
 import { registerUser } from '@/lib/action/AuthAction';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link'
@@ -52,8 +51,8 @@ const signup = () => {
   };
 
   return (
-    <div>
-        <form  className='flex flex-col m-auto my-12 p-4 w-1/2' onSubmit={handleSubmit(saveUser)}>
+    <section className='flex h-full bg-gradient-to-br from-yellow-950 to-indigo-950 via-pink-950'>
+        <form  className='flex flex-col m-auto my-12 p-4 w-1/3' onSubmit={handleSubmit(saveUser)}>
         <input 
         {...register("firstName")}
         type="text" 
@@ -61,7 +60,6 @@ const signup = () => {
         className="input input-bordered input-primary mb-2" 
         />
         <input 
-      
        {...register("lastName")}
         type="text" 
         placeholder="Last Name here" 
@@ -86,15 +84,15 @@ const signup = () => {
         className="input input-bordered input-primary mb-2" 
         />
         <button type="submit" className='btn btn-primary'>Sign up</button>
-
-        </form>
         <div className='flex flex-col items-center'>
-        <p>Already Signed up
+        <p className='mt-0'>Already Signed up
         <Link href="/api/auth/signin" className='text-blue-800 p-3 underline'>Sign In</Link>
         </p>
         
     </div>
-    </div>
+        </form>
+        
+    </section>
   )
 }
 
