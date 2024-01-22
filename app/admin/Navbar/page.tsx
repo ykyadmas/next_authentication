@@ -13,6 +13,10 @@ const link=[
 { 
   title:'Proposals',
  path:'/admin/proposal'
+},
+{ 
+  title:'Messages',
+ path:'/admin/contact'
 }
 ]
 const Navbar = () => {

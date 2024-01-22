@@ -19,13 +19,9 @@ const DeleteButton = ({ProposalId}:{ProposalId:number}) => {
         } catch (error) {
          setError(true);
          setDelete(false);
-
         }
-   
-   
        }
     
-
   return (
     <div>
        

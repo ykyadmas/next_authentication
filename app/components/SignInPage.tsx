@@ -23,8 +23,7 @@ export default function SignIn() {
 
 {session && session.user ? (
      <div>
-  <div className='flex justify-end bg-gray-500 gap-4'>
-  <p>{`${session.user.firstName} ${session.user.lastName}`}</p>
+  <div className='flex justify-end bg-gray-500 gap-4 position'>
   <>
 {session.user?.role=="ADMIN" && <Link className='btn btn-primary' href="/admin">Admin</Link>}
   </>
@@ -35,7 +34,14 @@ export default function SignIn() {
   <Link href="#contact" className='mt-2 text-white'>Contact</Link>
  
 
-  <Link href="/api/auth/signout" className='btn btn-primary'>Signout</Link>
+  <div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className="btn m-1 rounded-full">{session.user.firstName}</div>
+  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li><p>{`${session.user.firstName} ${session.user.lastName}`}</p>
+</li>
+    <li><Link href="/api/auth/signout">Signout</Link></li>
+  </ul>
+</div>
   </div>
 <HeroSection />
 <About />

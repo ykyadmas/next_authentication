@@ -8,6 +8,8 @@ import { authOptions } from '@/app/api/auth/[[...nextauth]]/route';
 const Proposal = async() => {
   const proposal=await prisma.proposal.findMany()
   const session=await getServerSession(authOptions)
+
+
   if(session?.user.role !=='ADMIN'){
  throw new Error("You Are not An admin")
   }
