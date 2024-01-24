@@ -8,8 +8,9 @@ export const validationSchema = z.object({
     woreda:z.string().min(5,"the Character must be atleast 5").max(20,"the Character name must Not greater than 30"),
     kebele:z.string(),
     phoneNo:z.string(),
-    startDate: string(),
+    startDate: z.string(),
     endDate: z.string(),
     proposedDate: z.string(),
-    branch:z.string().min(5,"Branch name must be at leat 5").max(30,"Branch name must Not greater than 30")
+    branch:z.string().min(5,"Branch name must be at leat 5").max(30,"Branch name must Not greater than 30"),
+    // userId:z.string()
 });
