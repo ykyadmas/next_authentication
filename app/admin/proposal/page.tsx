@@ -34,7 +34,6 @@ const Proposal = async() => {
      <th>Branch</th>
      <th>Status</th>
      <th>Created At</th>
-     <th></th>
   </thead>
   {proposal.map((proposals) =>(
  <tbody>

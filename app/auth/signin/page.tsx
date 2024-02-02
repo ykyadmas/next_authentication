@@ -42,7 +42,7 @@ router.push(props.callbackUrl? props.callbackUrl:"/")
   }
 
 return(
-<section className="flex max-h-fit bg-gradient-to-br from-yellow-950 to-indigo-950 via-pink-950">
+<div className="flex h-screen bg-gradient-to-r from-yellow-950 to-indigo-950 via-pink-950">
 <form className='flex flex-col m-auto my-12 p-4 w-1/3' onSubmit={handleSubmit(onSubmit)}>
 <input 
 {...register("email")}
@@ -53,7 +53,7 @@ className="input input-bordered input-primary mb-2"
 <input 
 {...register("password")}
 type="password"
-placeholder="Enter Your Email"
+placeholder="Enter Your Password"
 className="input input-bordered input-primary mb-2" 
 />
 <button 
@@ -61,12 +61,12 @@ className="btn btn-primary"
 type="submit" 
 disabled={isSubmitting}
 >{isSubmitting ? "Sign In...":"Sign In"}</button>
-<p>You Don't Have An Account
+<p className="text-white">You Don't Have An Account
 <Link className="text-blue-900 p-2" href="/auth/signup">
   Sign Up</Link>
 </p>
 </form>
-</section>
+</div>
 )
 }
 

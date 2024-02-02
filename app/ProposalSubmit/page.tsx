@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod'
 import { validationSchema } from '../validationSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Proposal } from '@prisma/client';
 
 type ProposalForm=z.infer<typeof validationSchema>
 
@@ -17,7 +16,23 @@ const ProposalSubmit = () => {
     const {register,handleSubmit,formState:{errors ,isSubmitting}}=useForm<ProposalForm>({
       resolver:zodResolver(validationSchema)
     });
-    
+   
+
+    const [checkboxes, setCheckboxes] = useState({
+      comprehensive: false,
+      thirdParty: false,
+      thirdPartyFireAndTheft: false,
+      onDamage: false
+    });
+
+    const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
+      const { name, checked } = event.target;
+      setCheckboxes((prevState) => ({
+        ...prevState,
+        [name]: checked,
+      }));
+    };
+
     const onSubmitProposal=handleSubmit(async (data)=>{
 
       try {
@@ -28,6 +43,7 @@ const ProposalSubmit = () => {
           setError("An expected error occurred.");
       }
       })
+      
 
     const [error,setError]=useState('');
     return (
@@ -36,11 +52,14 @@ const ProposalSubmit = () => {
   <span>{error}</span>
 </div>
 }
+
  <form 
-       
         onSubmit={onSubmitProposal}>
+           
     <div  className='grid grid-cols-4 ml-10 mt-16 gap-2' >
+        
     <label className='ml-16'>First Name:</label>
+
         <input  
         {...register('firstName')}
         type="text"
@@ -107,6 +126,51 @@ const ProposalSubmit = () => {
          type="text"
          placeholder="Write Branch" 
          className="input input-bordered input-secondary w-full max-w-xs" />
+    <div className='flex flex-col mr-11 justify-between mt-20'>
+      <h1 className='font-bold text-2xl'>Insurance Types</h1>
+    <label className="label cursor-pointer">
+    <input  
+     {...register('comprehensive')}
+    name="comprehensive" 
+    type="checkbox" 
+    checked={checkboxes.comprehensive}  
+    onChange={handleCheckboxChange} 
+    className="checkbox checkbox-primary p-0" />
+    <p className="label-text p-0">comprehensive:</p> 
+  </label>
+  <label className="label cursor-pointer">
+    <input 
+     {...register('thirdParty')}
+
+    name="thirdParty" 
+    type="checkbox" 
+    checked={checkboxes.thirdParty}  
+    onChange={handleCheckboxChange} 
+    className="checkbox checkbox-primary" />
+    <span className="label-text">thirdParty:</span> 
+  </label>
+  <label className="label cursor-pointer">
+    <input  
+      {...register('thirdPartyFireAndTheft')}
+
+    name="thirdPartyFireAndTheft" 
+    type="checkbox" 
+    checked={checkboxes.thirdPartyFireAndTheft}  
+    onChange={handleCheckboxChange} 
+    className="checkbox checkbox-primary" />
+  <span className="label-text">thirdPartyFireAndTheft:</span> 
+  </label>
+  <label className="label cursor-pointer">
+    <input  
+      {...register('ondamage')}
+    name="onDamage" 
+    type="checkbox" 
+    checked={checkboxes.onDamage}  
+    onChange={handleCheckboxChange} 
+    className="checkbox checkbox-primary" />
+  <span className="label-text">ondamage:</span> 
+  </label>
+    </div>
     </div>
     <div className='flex justify-center mt-10'>
     <button 

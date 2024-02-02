@@ -1,52 +1,22 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SubInsurances from "../components/SubInsurances";
 
 
 
 const Insurance = () => {
   return (
-  <div className="bg-primary-content">
-    <h1 className="ml-80  border-b-blue-700 inline-block font-bold text-4xl justify-center mt-7 mb-8 border decorate ">Go to Our Proposals And fill</h1>
-    <div className="grid grid-cols-4 gap-16 justify-center">
-    <div>
-    <Link href="/ProposalSubmit">
-   <Image 
-      src="/insurance.jpg" 
-      width={300} height={300} 
-      alt="Image"/>
-    <p>Private Proposal Policy</p>
-   </Link>
+ <div>
+     <div className='flex justify-end bg-gray-500 gap-4 p-5 position'>
+    <Link href="/" className='mt-2 text-white'>Back to Home</Link>
+    <Link className="btn btn-xs rounded-full mt-2  text-black" href="/api/auth/signout">Signout</Link>
+
+  
     </div>
-    <div>
-   <Link href="/ProposalSubmit">
-   <Image 
-      src="/insurance.jpg" 
-      width={300} height={300} 
-      alt="Image"/>
-    <p>Trade Proposal Policy</p>
-   </Link>
-    </div>
-    <div>
-   <Link href="/ProposalSubmit">
-   <Image 
-      src="/insurance.jpg" 
-      width={300} height={300} 
-      alt="Image"/>
-    <p>Trade Proposal Policy</p>
-   </Link>
-    </div>
-    <div>
-   <Link href="/ProposalSubmit">
-   <Image 
-      src="/insurance.jpg" 
-      width={300} height={300} 
-      alt="Image"/>
-    <p>Trade Proposal Policy</p>
-   </Link>
-    </div>
-  </div>
-  </div>
+  <SubInsurances/>
+  
+ </div>
   );
 };
 

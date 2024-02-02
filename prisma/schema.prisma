@@ -41,16 +41,15 @@ model User {
   id              String    @id @default(cuid())
   firstName       String
   lastName        String
-  email           String?   @unique
+  email           String    @unique
   password        String
   confirmPassword String
   emailVerified   DateTime?
   role            Role      @default(USER)
   image           String?
+  // userProposal        Proposal?
   accounts        Account[]
   sessions        Session[]
-  // proposal Proposal?
-  // message Message[]
 }
 
 model VerificationToken {
@@ -76,14 +75,18 @@ model Proposal {
   startDate  String
   endDate    String
 
-  model        String
-  proposedDate String
-  branch       String
-  status       Status   @default(IN_PROGRESS)
-  createdAt    DateTime @default(now())
-  // userId       String @unique
-  // user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  // userId String @unique
+  model                  String
+  proposedDate           String
+  branch                 String
+  comprehensive          Boolean  @default(false)
+  thirdParty             Boolean  @default(false)
+  thirdPartyFireAndTheft Boolean  @default(false)
+  ondamage               Boolean  @default(false)
+  status                 Status   @default(IN_PROGRESS)
+  createdAt              DateTime @default(now())
+  // user         User  @relation(fields: [firstName], references: [id], onDelete: Cascade)
+  // useId String @unique
+  // user         User?  @relation(fields: [useId], references: [id], onDelete: Cascade)
 }
 
 enum Status {

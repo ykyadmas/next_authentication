@@ -22,14 +22,14 @@ const About =()=>{
         <div className="mt-4 text-left flex flex-col h-full">
           <div className="flex flex-row justify-start mt-8">
           
-         <Image src="/insurance.jpg" alt="image" width={500} height={400}/>
+         <Image src="/insurance2.png" alt="image" width={500} height={400}/>
           </div>
         
         </div>
       </div>
       <div className="md:grid md:grid-cols-2 gap-4 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
        <div>
-       <Image src="/insurance.jpg" alt="image" width={500} height={400}/>
+       <Image src="/mession.jpg" alt="image" width={500} height={400}/>
 
        
        </div>

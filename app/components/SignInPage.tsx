@@ -13,6 +13,7 @@ import Footer from './Footer';
 import About from './About';
 import Contact from './Contact';
 import Location from './Location';
+import UserId from './UserId';
 export default function SignIn() {
 
   const{data:session}=useSession();
@@ -38,6 +39,7 @@ export default function SignIn() {
   <div tabIndex={0} role="button" className="btn m-1 rounded-full">{session.user.firstName}</div>
   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
     <li><p>{`${session.user.firstName} ${session.user.lastName}`}</p>
+  
 </li>
     <li><Link href="/api/auth/signout">Signout</Link></li>
   </ul>

@@ -11,18 +11,25 @@ const Proposal = async() => {
 
   return (
 
-  
- <div>
-  your status is 
+ <div className='grid grid-rows-2 justify-center  p-32 bg-gradient-to-b from-gray-100 to-slate-100 via-slate-100 h-screen'>
+<div>
+<p className='font-bold text-3xl'>Proposal Submitted successfully: </p>
+<p className='font-bold ml-24 text-3xl'>your status is </p>
+
+</div>
+
+<div className='ml-48'>
 {proposal.map((proposals) =>(
    <>
    <Link
       className='hover:underline'
       href={`/admin/proposal/${proposals.id}`}>
-      <td key={proposals.id}>{proposals.id}</td>
-    </Link><ProposalStatus status={proposals.status} /></>
+    </Link><ProposalStatus status={proposals.status} />
+    </>
 
   ))}
+</div>
+
  </div>
   )
 }
