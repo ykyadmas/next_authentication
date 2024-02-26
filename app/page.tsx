@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SignIn from './components/SignInPage';
 import HomePage from './components/HomePage';
-export default function Home() {
+export default async function Home() {
 
   return (
     <div>

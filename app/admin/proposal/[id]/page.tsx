@@ -2,7 +2,6 @@ import EditButton from '@/app/components/EditButton'
 import DeleteButton from '@/app/components/DeleteButton'
 import ProposalStatus from '@/app/components/ProposalStatus'
 import { prisma } from '@/lib/prisma'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -55,13 +54,10 @@ notFound();
       <td>{proposal.createdAt.toDateString()}</td>
       <td><EditButton ProposalId={proposal.id}/></td>
       <td><DeleteButton ProposalId={proposal.id}/></td>
-
-
       </tbody>
   </table>
     </div>
     <div>
-      
     </div>
     </div>
   )

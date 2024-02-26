@@ -11,10 +11,8 @@ export async  function POST(request: NextRequest){
         return NextResponse.json(validation.error.errors,{status:400})
     }
 
-
 const newProposal=await prisma.proposal.create({
     data:{
-       
          firstName:body.firstName,
          lastName:body.lastName,
          model:body.model,

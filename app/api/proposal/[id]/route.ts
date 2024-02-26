@@ -48,8 +48,7 @@ export async function DELETE(request: NextRequest,
         if(!proposal) 
         return NextResponse.json(
             {error:'Invalid Proposal'},
-            {status:404}
-            );
+            {status:404});
             await prisma.proposal.delete({
             where:{id:proposal.id}
             })

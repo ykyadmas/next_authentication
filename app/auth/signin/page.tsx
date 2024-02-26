@@ -38,6 +38,7 @@ if(!result?.ok){
   toast.error("Sign Failed");
   return;
 }
+toast.success("Welcome to Nib Insurance");
 router.push(props.callbackUrl? props.callbackUrl:"/")
   }
 

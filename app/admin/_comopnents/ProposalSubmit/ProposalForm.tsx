@@ -64,7 +64,6 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
         <input 
      {...register('lastName')}
      defaultValue={proposal?.lastName}
-
         type="text"
          placeholder="Enter your lastName" 
          className="input input-bordered input-secondary w-full max-w-xs" />
@@ -83,7 +82,6 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
   <input 
         {...register('kebele')}
         defaultValue={proposal?.kebele}
-
          type="text"
          placeholder="Write Your Address/Kebele" 
          className="input input-bordered input-secondary w-full max-w-xs" />
@@ -91,7 +89,6 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
            <input 
         {...register('phoneNo')}
         defaultValue={proposal?.phoneNo}
-
          type="text"
          placeholder="Write Your Phone Number with +251" 
          className="input input-bordered input-secondary w-full max-w-xs" />
@@ -99,7 +96,6 @@ const ProposalForm = ({proposal}:{proposal:Proposal}) => {
            <input 
         {...register('occupation')}
         defaultValue={proposal?.occupation}
-
          type="text"
          placeholder="Write Your Job/Occupation" 
          className="input input-bordered input-secondary w-full max-w-xs" />
