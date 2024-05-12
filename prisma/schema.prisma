@@ -38,25 +38,28 @@ model Session {
 }
 
 model User {
-  id              String    @id @default(cuid())
+  id              String     @id @default(cuid())
   firstName       String
   lastName        String
-  email           String    @unique
+  email           String     @unique
   password        String
   confirmPassword String
   emailVerified   DateTime?
-  role            Role      @default(USER)
+  role            Role       @default(USER)
   image           String?
-  // userProposal        Proposal?
+  proposals       Proposal[]
   accounts        Account[]
   sessions        Session[]
+  messages        Message[]
+  engineerSurveys EngineerSurvey[]
+  Payments        Payment[] 
+  claimForms       ClaimForm[]
 }
 
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-
   @@unique([identifier, token])
 }
 
@@ -64,47 +67,88 @@ model Proposal {
   id        Int    @id @default(autoincrement())
   firstName String
   lastName  String
-  //Proposer Address
   woreda    String
   kebele    String
   phoneNo   String
 
-  //Occupation
   occupation String
-  //period of Insurance
   startDate  String
   endDate    String
 
   model                  String
   proposedDate           String
   branch                 String
-  comprehensive          Boolean  @default(false)
-  thirdParty             Boolean  @default(false)
-  thirdPartyFireAndTheft Boolean  @default(false)
-  ondamage               Boolean  @default(false)
-  status                 Status   @default(IN_PROGRESS)
-  createdAt              DateTime @default(now())
-  // user         User  @relation(fields: [firstName], references: [id], onDelete: Cascade)
-  // useId String @unique
-  // user         User?  @relation(fields: [useId], references: [id], onDelete: Cascade)
+  comprehensive          Boolean          @default(false)
+  thirdParty             Boolean          @default(false)
+  thirdPartyFireAndTheft Boolean          @default(false)
+  ondamage               Boolean          @default(false)
+  // status                 Status           @default(IN_PROGRESS)
+  createdAt              DateTime         @default(now())
+  user                   User             @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail              String     
+  engineers              EngineerSurvey?
+  payments               Payment?
 }
 
-enum Status {
-  APPROVED
-  IN_PROGRESS
-  CANCELLED
-}
+// enum Status {
+//   APPROVED
+//   IN_PROGRESS
+//   CANCELLED
+// }
 
 enum Role {
   USER
   ADMIN
+  CLAIMADJUSTER
+  INSURANCEOFFICER
 }
 
 model Message {
-  id           Int    @id @default(autoincrement())
-  emailMessage String
-  subject      String
-  sentMessage  String
-  // userId       String @unique
-  // user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  subject     String
+  sentMessage String
+  user        User?     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail   String?   
+  createdAt   DateTime @default(now())
+}
+
+model EngineerSurvey {
+  id         Int      @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  message    String
+  payments   String
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  proposalId Int  @unique    
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String    
+}
+model Payment {
+  id         Int      @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  amount     String
+  receipt    String
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  proposalId Int  @unique    
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String 
+  claimForm   ClaimForm[]
+}
+model ClaimForm {
+  id         Int      @id @default(autoincrement())
+  driverFullName  String
+  driverAddress    String
+  driverOccupation   String
+  place   String
+  age      String
+  LicenceNo String
+  policyFile String
+  carFile String
+  acidentDate String
+  time          String
+  Payment            Payment @relation(fields: [PaymentId], references: [id], onDelete: Cascade)
+  PaymentId Int  @unique    
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String 
 }

@@ -22,8 +22,10 @@ type Input=z.infer<typeof FormSchema>
 
 const signin=(props:Props)=>{
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router=useRouter();
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const{register,handleSubmit,formState:{errors,isSubmitting}}=useForm<Input>({
     resolver:zodResolver(FormSchema),
   });
@@ -43,8 +45,8 @@ router.push(props.callbackUrl? props.callbackUrl:"/")
   }
 
 return(
-<div className="flex h-screen bg-gradient-to-r from-yellow-950 to-indigo-950 via-pink-950">
-<form className='flex flex-col m-auto my-12 p-4 w-1/3' onSubmit={handleSubmit(onSubmit)}>
+<div className="flex h-screen bg-gradient-to-r from-yellow-950 via-pink-950 to-indigo-950">
+<form className='m-auto my-12 flex w-1/3 flex-col p-4' onSubmit={handleSubmit(onSubmit)}>
 <input 
 {...register("email")}
 type="text"
@@ -62,9 +64,10 @@ className="btn btn-primary"
 type="submit" 
 disabled={isSubmitting}
 >{isSubmitting ? "Sign In...":"Sign In"}</button>
-<p className="text-white">You Don't Have An Account
-<Link className="text-blue-900 p-2" href="/auth/signup">
-  Sign Up</Link>
+<p className="text-white">You Don&apos;t Have An Account
+<Link className="p-2 text-blue-900" href="/auth/signup">
+  Sign Up
+</Link>
 </p>
 </form>
 </div>

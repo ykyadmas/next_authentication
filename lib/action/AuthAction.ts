@@ -9,7 +9,6 @@ export async function registerUser(user:Omit<User, "id" | "emailVerified" | "ima
             ...user,
             password:await bcrypt.hash(user.password,10),
             confirmPassword:await bcrypt.hash(user.confirmPassword,10)
-
         },
        
     })

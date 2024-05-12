@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 
 
@@ -11,6 +10,7 @@ const Insurance = () => {
   <Link href="#about" className='mt-2 text-white'>About</Link>
   <Link href="#proposal" className='mt-2 text-white'>Proposals</Link>
   <Link href="#contact" className='mt-2 text-white'>Contact</Link>
+  <Link href="#proposalDisplay" className="mt-2 text-white">Your Proposal</Link>
   </div>
   );
 };

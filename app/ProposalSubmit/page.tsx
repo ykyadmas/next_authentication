@@ -34,9 +34,9 @@ const ProposalSubmit = () => {
     };
 
     const onSubmitProposal=handleSubmit(async (data)=>{
-
       try {
       await axios.post('/api/proposal',data);
+      console.log(data)
       router.push('/ProofSubmit');
       router.refresh();          
       } catch (error) {
@@ -44,11 +44,10 @@ const ProposalSubmit = () => {
       }
       })
       
-
     const [error,setError]=useState('');
     return (
     <div> 
-    {error && <div role="alert" className="alert alert-error w-80 mt-16 ml-64">
+    {error && <div role="alert" className="alert alert-error ml-64 mt-16 w-80">
   <span>{error}</span>
 </div>
 }
@@ -56,7 +55,7 @@ const ProposalSubmit = () => {
  <form 
         onSubmit={onSubmitProposal}>
            
-    <div  className='grid grid-cols-4 ml-10 mt-16 gap-2' >
+    <div  className='ml-10 mt-16 grid grid-cols-4 gap-2' >
         
     <label className='ml-16'>First Name:</label>
 
@@ -126,8 +125,8 @@ const ProposalSubmit = () => {
          type="text"
          placeholder="Write Branch" 
          className="input input-bordered input-secondary w-full max-w-xs" />
-    <div className='flex flex-col mr-11 justify-between mt-20'>
-      <h1 className='font-bold text-2xl'>Insurance Types</h1>
+    <div className='mr-11 mt-20 flex flex-col justify-between'>
+      <h1 className='text-2xl font-bold'>Insurance Types</h1>
     <label className="label cursor-pointer">
     <input  
      {...register('comprehensive')}
@@ -135,7 +134,7 @@ const ProposalSubmit = () => {
     type="checkbox" 
     checked={checkboxes.comprehensive}  
     onChange={handleCheckboxChange} 
-    className="checkbox checkbox-primary p-0" />
+    className="checkbox-primary checkbox p-0" />
     <p className="label-text p-0">comprehensive:</p> 
   </label>
   <label className="label cursor-pointer">
@@ -146,7 +145,7 @@ const ProposalSubmit = () => {
     type="checkbox" 
     checked={checkboxes.thirdParty}  
     onChange={handleCheckboxChange} 
-    className="checkbox checkbox-primary" />
+    className="checkbox-primary checkbox" />
     <span className="label-text">thirdParty:</span> 
   </label>
   <label className="label cursor-pointer">
@@ -157,7 +156,7 @@ const ProposalSubmit = () => {
     type="checkbox" 
     checked={checkboxes.thirdPartyFireAndTheft}  
     onChange={handleCheckboxChange} 
-    className="checkbox checkbox-primary" />
+    className="checkbox-primary checkbox" />
   <span className="label-text">thirdPartyFireAndTheft:</span> 
   </label>
   <label className="label cursor-pointer">
@@ -167,15 +166,15 @@ const ProposalSubmit = () => {
     type="checkbox" 
     checked={checkboxes.onDamage}  
     onChange={handleCheckboxChange} 
-    className="checkbox checkbox-primary" />
+    className="checkbox-primary checkbox" />
   <span className="label-text">ondamage:</span> 
   </label>
     </div>
     </div>
-    <div className='flex justify-center mt-10'>
+    <div className='mt-10 flex justify-center'>
     <button 
          type="submit" 
-         className='btn btn-neutral w-full max-w-xs flex'
+         className='btn btn-neutral flex w-full max-w-xs'
          disabled={isSubmitting}
          >{isSubmitting ? "Submit Proposal...":"Submit"}</button>
     </div>

@@ -1,8 +1,8 @@
 "use client"
 import { registerUser } from '@/lib/action/AuthAction';
+// import { registerUser } from '@/lib/action/AuthAction';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link'
-import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from "zod";
@@ -51,8 +51,8 @@ const signup = () => {
   };
 
   return (
-    <section className='flex  bg-gradient-to-br from-yellow-950 to-indigo-950 via-pink-950'>
-        <form  className='flex flex-col m-auto my-12 p-4 w-1/3' onSubmit={handleSubmit(saveUser)}>
+    <section className='flex  bg-gradient-to-br from-yellow-950 via-pink-950 to-indigo-950'>
+        <form  className='m-auto my-12 flex w-1/3 flex-col p-4' onSubmit={handleSubmit(saveUser)}>
         <input 
         {...register("firstName")}
         type="text" 
@@ -86,7 +86,7 @@ const signup = () => {
         <button type="submit" className='btn btn-primary'>Sign up</button>
         <div className='flex flex-col items-center'>
         <p className='mt-0 text-white'>Already Signed up
-        <Link href="/api/auth/signin" className='text-blue-800 p-3 underline'>Sign In</Link>
+        <Link href="/api/auth/signin" className='p-3 text-blue-800 underline'>Sign In</Link>
         </p>
         
     </div>

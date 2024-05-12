@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
-import SignIn from './components/SignInPage'
 import AuthProvider from './auth/Provider'
-import { Theme } from '@radix-ui/themes';
+import React from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

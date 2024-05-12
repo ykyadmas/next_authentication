@@ -1,17 +1,21 @@
 import EditButton from '@/app/components/EditButton'
 import DeleteButton from '@/app/components/DeleteButton'
-import ProposalStatus from '@/app/components/ProposalStatus'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import React from 'react'
+import EngineersForm from '../../_comopnents/EngineersForm'
+import SurveyDisplay from '../../_comopnents/SurveyDisplay'
 
 interface Props{
     params:{id:string}
 }
 
 const ProposalDetailPage = async({params}:Props) => {
-const proposal=await prisma.proposal.findUnique({
-    where:{id:parseInt(params.id)}
+const proposal=await prisma.proposal.findFirst({
+    where:{id:parseInt(params.id)},
+    include:{
+      user:true,
+    }
 })    
 
 if(!proposal) 
@@ -33,7 +37,6 @@ notFound();
         <th>end Date</th>
         <th>proposed Date</th>
         <th>Branch</th>
-        <th>Status</th>
         <th>Created</th>
         <th></th>
      </thead>
@@ -50,7 +53,6 @@ notFound();
       <td>{proposal.endDate}</td>
       <td>{proposal.proposedDate}</td>
       <td>{proposal.branch}</td>
-      <td><ProposalStatus status={proposal.status}/></td>
       <td>{proposal.createdAt.toDateString()}</td>
       <td><EditButton ProposalId={proposal.id}/></td>
       <td><DeleteButton ProposalId={proposal.id}/></td>
@@ -58,6 +60,9 @@ notFound();
   </table>
     </div>
     <div>
+      <p className='flex justify-center border-b text-xl font-bold'>Survey </p>
+    <SurveyDisplay proposalId={parseInt(params.id)}/>
+    <EngineersForm proposalId={parseInt(params.id)}/>
     </div>
     </div>
   )

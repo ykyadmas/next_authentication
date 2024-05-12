@@ -1,9 +1,7 @@
 "use client"
 
 import { useSession } from 'next-auth/react';
-import Image from 'next/image'
 import Link from 'next/link'
-import ProposalSubmit from '../ProposalSubmit/page';
 // import { useRouter } from 'next/navigation';
 // import { useEffect } from 'react';
 import Homepgae from './HomePage';
@@ -13,10 +11,11 @@ import Footer from './Footer';
 import About from './About';
 import Contact from './Contact';
 import Location from './Location';
-import UserId from './UserId';
-export default function SignIn() {
 
-  const{data:session}=useSession();
+
+export default function SignIn({engineerSurveyId}:{engineerSurveyId:number}) {
+
+const{data:session}=useSession();
 
 
   return (
@@ -24,24 +23,25 @@ export default function SignIn() {
 
 {session && session.user ? (
      <div>
-  <div className='flex justify-end bg-gray-500 gap-4 position'>
+  <div className='position flex justify-end gap-4 bg-gray-500'>
   <>
-{session.user?.role=="ADMIN" && <Link className='btn btn-primary' href="/admin">Admin</Link>}
+{session.user?.role==="ADMIN" && <Link className='btn btn-primary' href="/admin">Admin</Link>}
   </>
   {/* <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link> */}
   <Link href="#home" className='mt-2 text-white'>Home</Link>
   <Link href="#about" className='mt-2 text-white'>About</Link>
   <Link href="#proposal" className='mt-2 text-white'>Proposals</Link>
   <Link href="#contact" className='mt-2 text-white'>Contact</Link>
- 
+  <Link href="/proposalDisplay" className='mt-2 text-white'>proposalDisplay</Link>
+
 
   <div className="dropdown dropdown-end">
   <div tabIndex={0} role="button" className="btn m-1 rounded-full">{session.user.firstName}</div>
-  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+  <ul tabIndex={0} className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow">
     <li><p>{`${session.user.firstName} ${session.user.lastName}`}</p>
-  
 </li>
     <li><Link href="/api/auth/signout">Signout</Link></li>
+    <li><Link href='/ProofSubmit/'>Insurance Status</Link></li>
   </ul>
 </div>
   </div>
@@ -54,7 +54,7 @@ export default function SignIn() {
   </div>
 ):(
  <div>
-   <div className='flex gap-4 justify-end bg-gray-500'>
+   <div className='flex justify-end gap-4 bg-gray-500'>
   <Link href="/auth/signup" className='btn btn-primary'>Sign up</Link>
    <Link href="/api/auth/signin" className='btn btn-primary'>Sign in</Link>
   </div>
