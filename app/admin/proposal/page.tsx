@@ -13,11 +13,11 @@ const Proposal = async() => {
   })
   const session=await getServerSession(authOptions)
 
-  if(session?.user.role !=='ADMIN'){
+  if(session?.user.role !=='SURVEYENGINEER'){
  throw new Error("You Are not An admin")
   }
 
-  else if(session.user.role ==='ADMIN')
+  else if(session.user.role ==='SURVEYENGINEER')
   return (
   <div className="overflow-x-auto">
  <table className="table">
@@ -29,6 +29,8 @@ const Proposal = async() => {
      <th>FirstName</th>
      <th>LastName</th>
      <th>Model</th>
+     <th>chassis No</th>
+
      <th>woreda</th>
      <th>kebele</th>
      <th>phoneNo</th>
@@ -37,6 +39,10 @@ const Proposal = async() => {
      <th>end Date</th>
      <th>proposed Date</th>
      <th>Branch</th>
+     <th>comprehensive</th>
+                            <th>thirdParty </th>
+                            <th>ondamage</th>
+                            <th>thirdPartyFireAndTheft </th>
      <th>Created At</th>
   </thead>
   {proposal.map((proposals) =>(
@@ -53,6 +59,8 @@ const Proposal = async() => {
    <td>{proposals.firstName}</td>
    <td>{proposals.lastName}</td>
    <td>{proposals.model}</td>
+   <td>{proposals.chassisNo}</td>
+
    <td>{proposals.woreda}</td>
    <td>{proposals.kebele}</td>
    <td>{proposals.phoneNo}</td>
@@ -63,6 +71,10 @@ const Proposal = async() => {
    <td>{proposals.branch}</td>
    <td>
    </td>
+   <td>{proposals.comprehensive ? 'Comprehensive' : ''}</td>
+                            <td>{proposals.thirdParty ? 'Third Party' : ''}</td>
+                            <td>{proposals.ondamage ? 'On Damage' : ''}</td>
+                            <td>{proposals.thirdPartyFireAndTheft ? 'Third Party Fire And Theft' : ''}</td>
    <td>{proposals.createdAt.toDateString()}</td>
    </tbody>
   ))}

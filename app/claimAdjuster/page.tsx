@@ -1,20 +1,31 @@
-import { authOptions } from '@/lib/Auth'
-import { getServerSession } from 'next-auth'
+import { PrismaClient } from '@prisma/client'
 import React from 'react'
 
-const admin = async() => {
-  
-  const session=await getServerSession(authOptions)
+const prisma=new PrismaClient()
 
-  if(session?.user.role !=='ADMIN'){
-    throw new Error("You Are not An admin")
-  }
-else if(session.user.role ==='ADMIN')
+const Dashboard = async() => {
+  const display=await prisma.claimForm.count()
   return (
-  <div>
-  <p className='font-bold'>This is admin page</p>
-  </div>
+    <div className=''>
+        {
+          display===0? (
+            <div className="card w-96 bg-slate-300 shadow-xl ">
+            <div className="card-body">
+              <h2 className="card-title">There No Claim</h2>
+            </div>
+          </div>          )
+          :(
+             <div className="card w-96 bg-slate-300 shadow-xl ">
+            <div className="card-body">
+              <h2 className="card-title">{display} Claim Requested</h2>
+            </div>
+          </div>
+        
+          )
+         
+        }
+    </div>
   )
 }
 
-export default admin
+export default Dashboard

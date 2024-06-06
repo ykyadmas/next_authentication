@@ -1,6 +1,6 @@
 import React from 'react'
 import { prisma } from '@/lib/prisma';
-import NotFoundPage from '@/app/admin/_comopnents/NotFoundPage';
+// import NotFoundPage from '@/app/admin/_comopnents/NotFoundPage';
 
 interface Props{
     proposalId:number;
@@ -15,12 +15,16 @@ const Insurance = async({proposalId}:Props) => {
             proposal:true
         }
     })
-    if(!display) return <NotFoundPage/>
-  
+
+  //    {
+  //     return <NotFoundPage />;
+  // }
+
+  if (display)
   return (
     <div>
-    <div>
-    <table className="table">
+     <div className="overflow-x-auto">
+    <table className="table ">
     <thead>
          <th></th>
         <th>FirstName</th>
@@ -34,7 +38,7 @@ const Insurance = async({proposalId}:Props) => {
         <th></th>
      </thead>
     <tbody>
-      <td>{display.id}</td>
+      <td>{display.id }</td>
       <td>{display.firstName}</td>
       <td>{display.lastName}</td>
       <td>{display.amount}</td>

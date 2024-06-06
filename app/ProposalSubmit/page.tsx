@@ -113,6 +113,12 @@ const ProposalSubmit = () => {
          type="text"
          placeholder="Type Your Car Model" 
          className="input input-bordered input-secondary w-full max-w-xs" />
+          <label className='ml-16'>Chassis Number:</label>
+<input 
+        {...register('chassisNo')}
+         type="text"
+         placeholder="Type Your Car Model" 
+         className="input input-bordered input-secondary w-full max-w-xs" />
      <label className='ml-16'>Proposed Date:</label>
 <input 
         {...register('proposedDate')}

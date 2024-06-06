@@ -9,7 +9,7 @@ import { FileText } from 'lucide-react'
 import { UploadDropzone } from '@/app/utils/uploadthing'
 
 interface Props{
-  PaymentId:number
+  PaymentId:number,
 }
 
 const ClaimForm = ({PaymentId}:Props) => {
@@ -19,12 +19,12 @@ const ClaimForm = ({PaymentId}:Props) => {
  
 
   const router=useRouter()
-  const {handleSubmit,register,formState:{errors,isSubmitting}}=useForm({
+  const {handleSubmit,register,formState:{isSubmitting}}=useForm({
     resolver:zodResolver(ClaimSchema)
   })
   const handleForm=(handleSubmit(async(data)=>{
    try {
-    await axios.post('/api/claim/',{...data,PaymentId,policyFile,carFile})
+    await axios.post(`/api/claim/`,{...data,PaymentId,policyFile,carFile})
     router.push('/ProofSubmit')
     router.refresh()
    } catch (error) {
@@ -88,7 +88,7 @@ placeholder="Acident Date" />
 Time
 <input 
  {...register('time')} 
-type="date" 
+type="time" 
 className="grow" 
 placeholder="Time" />
 </label>

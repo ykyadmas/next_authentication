@@ -9,7 +9,6 @@ interface Props {
 }
 
 const SurveyDisplayUser = async ({ proposalId }: Props) => {
-
     const display = await prisma.engineerSurvey.findMany({
         where: { proposalId },
         include: {
@@ -18,32 +17,28 @@ const SurveyDisplayUser = async ({ proposalId }: Props) => {
         }
     });
 
-    if (!display || display.length === 0) return <NotFoundPage/>;
+    if (!display || display.length === 0) {
+        return <NotFoundPage />;
+    }
 
     const survey = display[0];
 
-    if (survey) {
-        return (
-            <div className="overflow-x-auto">
-                <div className="hero min-h-screen bg-base-200">
-                    <div className="hero-content text-center">
-                        <div className="max-w-md">
-                            {!<Insurance proposalId={proposalId} /> && (
-                                <>
-                                    <h1 className="text-5xl font-bold">Hello {survey.user.firstName}</h1>
-                                    <p className="py-6">Your Proposal is Approved and you will pay <span className='text-green-400'>{survey.payments}</span></p>
-                                </>
-                            )}
-                            <div className='flex justify-end'>
-                                <Insurance proposalId={proposalId} />
-                            </div>
-                            <PaymentForm proposalId={proposalId}/>
+    return (
+        <div className="overflow-x-auto">
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content text-center">
+                    <div className="max-w-md">
+                        <h1 className="text-5xl font-bold">Hello {survey.user.firstName}</h1>
+                        <p className="py-6">Your Proposal is Approved and you will pay <span className='text-green-400'>{survey.payments}</span></p>
+                        <div className='flex justify-end'>
+                            <Insurance proposalId={proposalId} />
                         </div>
+                        <PaymentForm proposalId={proposalId}/>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default SurveyDisplayUser;

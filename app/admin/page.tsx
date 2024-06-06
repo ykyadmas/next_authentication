@@ -1,20 +1,35 @@
-import { authOptions } from '@/lib/Auth'
-import { getServerSession } from 'next-auth'
+import { PrismaClient } from '@prisma/client'
 import React from 'react'
+import ProposalCount from './_comopnents/proposalCount/ProposalCout'
 
-const admin = async() => {
-  
-  const session=await getServerSession(authOptions)
+const prisma=new PrismaClient()
 
-  if(session?.user.role !=='ADMIN'){
-    throw new Error("You Are not An admin")
-  }
-else if(session.user.role ==='ADMIN')
+const Dashboard = async() => {
+  const display=await prisma.user.count()
   return (
-  <div>
-  <p className='font-bold'>This is admin page</p>
-  </div>
+    <div className=''>
+        {
+          display===0? (
+            <p className='text-center font-bold'>No User</p>
+          )
+          :(
+           <div className='flex justify-between'>
+             <div className="card w-96 bg-slate-300 shadow-xl ">
+            <div className="card-body">
+              <h2 className="card-title">{display} users</h2>
+            </div>
+          </div>
+          <div className="card w-96 bg-slate-300 shadow-xl ">
+            <div className="card-body">
+              <ProposalCount/>
+            </div>
+          </div>
+           </div>
+          )
+         
+        }
+    </div>
   )
 }
 
-export default admin
+export default Dashboard

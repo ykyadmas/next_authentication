@@ -5,6 +5,7 @@ import { validationSchema } from "@/app/validationSchema";
 export async function PATCH(request: NextRequest,
     {params}: {params: {id:string}}){
     const {firstName,
+        chassisNo,
         lastName,
         model,
         woreda,
@@ -21,6 +22,7 @@ export async function PATCH(request: NextRequest,
         ondamage}=await request.json();
     const validation=validationSchema.safeParse({
         firstName,
+        chassisNo,
         lastName,
         model,
         woreda,
@@ -52,6 +54,7 @@ return NextResponse.json(
 const updateProposal = await prisma.proposal.update({
     where: {id:proposal.id},
     data:{firstName,
+        chassisNo,
         lastName,
         model,
         woreda,

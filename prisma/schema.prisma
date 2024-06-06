@@ -54,6 +54,10 @@ model User {
   engineerSurveys EngineerSurvey[]
   Payments        Payment[] 
   claimForms       ClaimForm[]
+  damageEvaluator DamageEvaluator[]
+  InsuranceCancelations InsuranceCancelation[]
+  InsuranceCancelationMessages  InsuranceCancelationMessage[]
+
 }
 
 model VerificationToken {
@@ -74,7 +78,8 @@ model Proposal {
   occupation String
   startDate  String
   endDate    String
-
+  //cha
+  //year
   model                  String
   proposedDate           String
   branch                 String
@@ -86,21 +91,17 @@ model Proposal {
   createdAt              DateTime         @default(now())
   user                   User             @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   userEmail              String     
+  chassisNo              String
   engineers              EngineerSurvey?
   payments               Payment?
 }
 
-// enum Status {
-//   APPROVED
-//   IN_PROGRESS
-//   CANCELLED
-// }
-
 enum Role {
-  USER
-  ADMIN
-  CLAIMADJUSTER
-  INSURANCEOFFICER
+ USER
+ SURVEYENGINEER
+ CLAIMADJUSTER
+ INSURANCEOFFICER
+ DAMAGEEVALUATER
 }
 
 model Message {
@@ -134,6 +135,9 @@ model Payment {
   user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   userEmail String 
   claimForm   ClaimForm[]
+  InsuranceCancelations     InsuranceCancelation[]
+  InsuranceCancelationMessages  InsuranceCancelationMessage[]
+  createdAt       DateTime?
 }
 model ClaimForm {
   id         Int      @id @default(autoincrement())
@@ -149,6 +153,39 @@ model ClaimForm {
   time          String
   Payment            Payment @relation(fields: [PaymentId], references: [id], onDelete: Cascade)
   PaymentId Int  @unique    
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String 
+  createdAt   DateTime? @default(now())
+  damageEvaluator DamageEvaluator[]
+}
+
+model DamageEvaluator{
+  id         Int      @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  message    String
+  file   String
+  claim   ClaimForm @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  claimId Int  @unique    
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String    
+}
+
+model InsuranceCancelation{
+  id Int @id @default(autoincrement())
+  Payment            Payment @relation(fields: [PaymentId], references: [id], onDelete: Cascade)
+  PaymentId Int  @unique    
+  cancilationDate String
+  cancilationTime  String
+  user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String 
+}
+
+model InsuranceCancelationMessage{
+  id Int @id @default(autoincrement())
+  message String
+  Payment            Payment @relation(fields: [PaymentId], references: [id], onDelete: Cascade)
+  PaymentId Int  @unique  
   user   User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   userEmail String 
 }

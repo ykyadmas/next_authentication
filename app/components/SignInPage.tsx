@@ -12,28 +12,29 @@ import About from './About';
 import Contact from './Contact';
 import Location from './Location';
 
-
 export default function SignIn({engineerSurveyId}:{engineerSurveyId:number}) {
 
 const{data:session}=useSession();
-
 
   return (
     <div>
 
 {session && session.user ? (
      <div>
-  <div className='position flex justify-end gap-4 bg-gray-500'>
+  <div className='flex justify-end gap-4 bg-gray-500'>
   <>
-{session.user?.role==="ADMIN" && <Link className='btn btn-primary' href="/admin">Admin</Link>}
+{session.user?.role==="SURVEYENGINEER" && <Link className='btn btn-primary' href="/admin">Survey Evaluater</Link>}
+{session.user?.role==="CLAIMADJUSTER" && <Link className='btn btn-primary' href="/claimAdjuster">Claim Adjuster</Link>}
+{session.user?.role==="INSURANCEOFFICER" && <Link className='btn btn-primary' href="/insuranceOfficer">Insurance Officer</Link>}
+{session.user?.role==="DAMAGEEVALUATER" && <Link className='btn btn-primary' href="/damageEvaluator">Damage Evaluator</Link>}
+
   </>
   {/* <Link href="/ProposalSubmit" className='btn btn-primary'>write your Proposal</Link> */}
   <Link href="#home" className='mt-2 text-white'>Home</Link>
   <Link href="#about" className='mt-2 text-white'>About</Link>
   <Link href="#proposal" className='mt-2 text-white'>Proposals</Link>
   <Link href="#contact" className='mt-2 text-white'>Contact</Link>
-  <Link href="/proposalDisplay" className='mt-2 text-white'>proposalDisplay</Link>
-
+  <Link href="/myAccount" className='mt-2 text-white'>My Account</Link>
 
   <div className="dropdown dropdown-end">
   <div tabIndex={0} role="button" className="btn m-1 rounded-full">{session.user.firstName}</div>
@@ -41,7 +42,6 @@ const{data:session}=useSession();
     <li><p>{`${session.user.firstName} ${session.user.lastName}`}</p>
 </li>
     <li><Link href="/api/auth/signout">Signout</Link></li>
-    <li><Link href='/ProofSubmit/'>Insurance Status</Link></li>
   </ul>
 </div>
   </div>

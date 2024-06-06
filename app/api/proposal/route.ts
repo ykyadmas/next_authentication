@@ -12,8 +12,8 @@ export async  function POST(request: NextRequest){
             return NextResponse.json({messgae:"User Not Found"},{status:401})
         }
 
-    const{firstName,lastName,model,woreda,kebele,phoneNo,occupation,startDate,endDate, proposedDate,branch,comprehensive, thirdParty,thirdPartyFireAndTheft,ondamage}=await request.json();
-    const validation=validationSchema.safeParse({firstName,lastName,model,woreda,kebele,phoneNo,occupation,startDate,endDate, proposedDate,branch,comprehensive, thirdParty,thirdPartyFireAndTheft,ondamage});
+    const{firstName,chassisNo,lastName,model,woreda,kebele,phoneNo,occupation,startDate,endDate, proposedDate,branch,comprehensive, thirdParty,thirdPartyFireAndTheft,ondamage}=await request.json();
+    const validation=validationSchema.safeParse({firstName,chassisNo,lastName,model,woreda,kebele,phoneNo,occupation,startDate,endDate, proposedDate,branch,comprehensive, thirdParty,thirdPartyFireAndTheft,ondamage});
 
         if(!validation.success){
             return NextResponse.json(validation.error.errors,{status:400})
@@ -23,6 +23,7 @@ export async  function POST(request: NextRequest){
         data:{
              userEmail:user.email,
              firstName,
+             chassisNo,
              lastName,
              model,
              woreda,

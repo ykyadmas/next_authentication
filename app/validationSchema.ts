@@ -16,5 +16,6 @@ export const validationSchema = z.object({
     comprehensive:z.boolean(), 
     thirdParty:z.boolean(),
     thirdPartyFireAndTheft:z.boolean(),
-    ondamage:z.boolean()
+    ondamage:z.boolean(),
+    chassisNo:z.string()
 });

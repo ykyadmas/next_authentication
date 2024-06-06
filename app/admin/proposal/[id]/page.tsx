@@ -37,6 +37,10 @@ notFound();
         <th>end Date</th>
         <th>proposed Date</th>
         <th>Branch</th>
+        <th>comprehensive</th>
+                            <th>thirdParty</th>
+                            <th>ondamage</th>
+                            <th>thirdPartyFireAndTheft</th>
         <th>Created</th>
         <th></th>
      </thead>
@@ -53,6 +57,10 @@ notFound();
       <td>{proposal.endDate}</td>
       <td>{proposal.proposedDate}</td>
       <td>{proposal.branch}</td>
+      <td>{proposal.comprehensive ? 'Comprehensive' : ''}</td>
+                            <td>{proposal.thirdParty ? 'Third Party' : ''}</td>
+                            <td>{proposal.ondamage ? 'On Damage' : ''}</td>
+                            <td>{proposal.thirdPartyFireAndTheft ? 'Third Party Fire And Theft' : ''}</td>
       <td>{proposal.createdAt.toDateString()}</td>
       <td><EditButton ProposalId={proposal.id}/></td>
       <td><DeleteButton ProposalId={proposal.id}/></td>
