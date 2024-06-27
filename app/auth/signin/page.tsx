@@ -45,7 +45,7 @@ router.push(props.callbackUrl? props.callbackUrl:"/")
   }
 
 return(
-<div className="flex h-screen bg-gradient-to-r from-yellow-950 via-pink-950 to-indigo-950">
+<div className="flex h-screen bg-slate-400 bg-gradient-to-r">
 <form className='m-auto my-12 flex w-1/3 flex-col p-4' onSubmit={handleSubmit(onSubmit)}>
 <input 
 {...register("email")}

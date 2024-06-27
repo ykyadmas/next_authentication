@@ -19,7 +19,7 @@ const CancelModal= ({PaymentId}:Props) => {
 
   return (
     <div>
-      <button className="btn" onClick={openModal}>Request Claim</button>
+      <button className="btn" onClick={openModal}>Cancel Your Insurance</button>
       <dialog ref={modalRef} className="modal" open={showModal}>
         <div className="modal-box">
           <CancelForm PaymentId={PaymentId}/>

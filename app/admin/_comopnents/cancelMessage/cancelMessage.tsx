@@ -34,7 +34,7 @@ const CancelMessageForm = ({PaymentId}:Props) => {
     <form onSubmit={handleForm}>
  
 <label className="input input-bordered flex items-center gap-2">
-Message For The Insurance  
+Message   
 <input 
 
  {...register('message')} 
@@ -43,7 +43,7 @@ className="grow"
 placeholder="Message" />
 </label>
 
-<button type='submit' className='btn btn-primary'>{isSubmitting ? "Submitting claim..." : "Submit claim"}</button>
+<button type='submit' className='btn btn-primary'>{isSubmitting ? "Submitting..." : "Submit"}</button>
     </form>
    </div>
   )

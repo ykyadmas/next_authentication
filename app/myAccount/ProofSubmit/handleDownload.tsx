@@ -12,17 +12,19 @@ const DownloadButton = ({ display }: DownloadProps) => {
         // eslint-disable-next-line new-cap
         const doc = new jsPDF();
         autoTable(doc, {
-            head: [['ID', 'FirstName', 'LastName','Amount','Kebele', 'Woreda', 'Branch', 'StartDate', 'CreatedAt']],
+            head: [['ID', 'FirstName', 'LastName','Amount','ChassisNo','Kebele', 'Woreda', 'Branch', 'StartDate', 'End date']],
             body: [[
                 display.id,
                 display.firstName,
                 display.lastName,
                 display.amount,
+                display.proposal.chassisNo,
                 display.proposal.kebele,
                 display.proposal.woreda,
                 display.proposal.branch,
                 display.proposal.startDate,
-                display.proposal.createdAt.toDateString()
+                display.proposal.endDate,
+
             ]]
         });
         doc.save("YourInsurance.pdf");

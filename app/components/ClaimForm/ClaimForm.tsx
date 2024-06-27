@@ -25,7 +25,7 @@ const ClaimForm = ({PaymentId}:Props) => {
   const handleForm=(handleSubmit(async(data)=>{
    try {
     await axios.post(`/api/claim/`,{...data,PaymentId,policyFile,carFile})
-    router.push('/ProofSubmit')
+    router.push('/')
     router.refresh()
    } catch (error) {
     console.log(error)

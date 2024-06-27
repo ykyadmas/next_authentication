@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod'
 import { validationSchema } from '../validationSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
 
 type ProposalForm=z.infer<typeof validationSchema>
-
 
 
 const ProposalSubmit = () => {
@@ -16,13 +16,11 @@ const ProposalSubmit = () => {
     const {register,handleSubmit,formState:{errors ,isSubmitting}}=useForm<ProposalForm>({
       resolver:zodResolver(validationSchema)
     });
-   
-
     const [checkboxes, setCheckboxes] = useState({
       comprehensive: false,
       thirdParty: false,
       thirdPartyFireAndTheft: false,
-      onDamage: false
+      ondamage: false
     });
 
     const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
@@ -37,13 +35,13 @@ const ProposalSubmit = () => {
       try {
       await axios.post('/api/proposal',data);
       console.log(data)
-      router.push('/ProofSubmit');
+      toast.success("succesfully submitted")
+      router.push('/');
       router.refresh();          
       } catch (error) {
           setError("An expected error occurred.");
       }
       })
-      
     const [error,setError]=useState('');
     return (
     <div> 
@@ -168,9 +166,9 @@ const ProposalSubmit = () => {
   <label className="label cursor-pointer">
     <input  
       {...register('ondamage')}
-    name="onDamage" 
+    name="ondamage" 
     type="checkbox" 
-    checked={checkboxes.onDamage}  
+    checked={checkboxes.ondamage}  
     onChange={handleCheckboxChange} 
     className="checkbox-primary checkbox" />
   <span className="label-text">ondamage:</span> 

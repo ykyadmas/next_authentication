@@ -12,27 +12,28 @@ const Insurance = async () => {
           },
         include: {
             user: true,
-            proposal: true
+            proposal: true,
+            InsuranceApproves:true,
         }
     });
 
     if (!display) return <NotFoundPage />;
 
     return (
-        <div>
-            <div>
-                <table className="table">
+    <div className="overflow-x-auto">
+    <table className="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>FirstName</th>
                             <th>LastName</th>
                             <td>Amount</td>
+                            <td>Chassi No</td>
                             <th>Kebele</th>
                             <th>Woreda</th>
                             <th>Branch</th>
                             <th>StartDate</th>
-                            <th>CreatedAt</th>
+                            <th>End Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,11 +43,13 @@ const Insurance = async () => {
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
                         <td>{item.amount}</td>
+                        <td>{item.proposal.chassisNo}</td>
                         <td>{item.proposal.kebele}</td>
                         <td>{item.proposal.woreda}</td>
                         <td>{item.proposal.branch}</td>
                         <td>{item.proposal.startDate}</td>
-                        <td>{item.proposal.createdAt.toDateString()}</td>
+                        <td>{item.proposal.endDate}</td>
+
                         <Link className='btn btn-primary'  href={`/myAccount/ProofSubmit/${item.id}/`}>Detail
                         </Link>
                     </tr>
@@ -56,7 +59,6 @@ const Insurance = async () => {
                     </tbody>
                 </table>
             </div>
-        </div>
     );
 };
 

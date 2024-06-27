@@ -86,11 +86,7 @@ notFound();
       {/* </tbody> */}
   {/* </table> */}
 
-    <div>
-      <p className='flex justify-center border-b text-xl font-bold'>Survey </p>
-    {/* <SurveyDisplay proposalId={parseInt(params.id)}/>
-    <EngineersForm proposalId={parseInt(params.id)}/> */}
-    </div>
+   
     </div>
     
   )

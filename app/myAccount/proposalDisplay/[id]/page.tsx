@@ -15,16 +15,16 @@ const ProposalDisplayPage = async ({ params }: Props) => {
         where: { id: parseInt(params.id) },
         include: {
             user: true,
+            
         }
     })
 
     if (!proposal) notFound();
-
     return (
         <div className='mt-0'>
-            <div className="overflow-x-auto ">
-                <table className="table">
-                    <thead>
+            <div className="overflow-x-auto">
+            <table className="table w-full max-w-full">
+            <thead>
                         <tr>
                             <th></th>
                             <th>FirstName</th>
@@ -73,7 +73,7 @@ const ProposalDisplayPage = async ({ params }: Props) => {
                 </table>
             </div>
             <div>
-                <p className='flex justify-center border-b text-xl font-bold'>Survey </p>
+                <p className='flex justify-center border-b text-xl font-bold'>Approval Page</p>
                 <SurveyDisplayUser proposalId={parseInt(params.id)} />
             </div>
         </div>

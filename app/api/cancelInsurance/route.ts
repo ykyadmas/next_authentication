@@ -10,8 +10,8 @@ export async function POST(request: NextRequest,{params}:{params:{id:string}}) {
         if (!user?.email) {
             return NextResponse.json({ message: "Not Authorized" }, { status: 401 });
         }
-        const { PaymentId, cancilationDate ,cancilationTime } = await request.json();
-        const validation = cancelSchema.safeParse({PaymentId,cancilationDate ,cancilationTime});
+        const { PaymentId, cancilationDate ,cancilationTime,reason } = await request.json();
+        const validation = cancelSchema.safeParse({PaymentId,cancilationDate ,cancilationTime,reason});
         if (!validation.success) {
             return NextResponse.json(validation.error.errors, { status: 400 });
         }
@@ -19,6 +19,7 @@ export async function POST(request: NextRequest,{params}:{params:{id:string}}) {
             data: {
                 cancilationDate ,
                 cancilationTime,
+                reason,
                 userEmail: user.email,
                 PaymentId
             }

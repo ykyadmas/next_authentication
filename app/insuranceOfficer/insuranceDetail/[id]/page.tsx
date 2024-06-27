@@ -4,6 +4,9 @@ import NotFoundPage from '@/app/admin/_comopnents/NotFoundPage';
 import EditButton from '../../_comopnents/InsuranceEdit/EditButton';
 import DeleteButton from '../../_comopnents/InsuranceEdit/DeleteButton';
 import CancelMessageModal from '@/app/admin/_comopnents/cancelMessage/cancelMessageMode';
+import DisplayCancelInsurance from '../../_comopnents/DisplayInsuranceCancel/DisplayInsuranceCancel';
+import InsuranceApproveFrm from '../../_comopnents/Insuranceapprove';
+import DisplayApprove from '../../_comopnents/DisplayApprove/DisplayAprove';
 // import DownloadButton from '../handleDownload';
 // import Modal from '@/app/components/ClaimForm/Modal';
 
@@ -16,11 +19,15 @@ const Insurance = async ({ params }: Props) => {
         where:{id:parseInt(params.id)},
         include: {
             user: true,
-            proposal: true
+            proposal: true,
+            InsuranceCancelationMessages:true,
+            InsuranceCancelations:true,
         }
     });
 
     if (!display) return <NotFoundPage />;
+
+    const displayCancele=display.InsuranceCancelations.length>0 
 
     return (
         <div>
@@ -37,6 +44,8 @@ const Insurance = async ({ params }: Props) => {
                             <th>Branch</th>
                             <th>StartDate</th>
                             <th>CreatedAt</th>
+                            <th>Status</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +61,7 @@ const Insurance = async ({ params }: Props) => {
                             <td>{display.proposal.createdAt.toDateString()}</td>
                             <td><EditButton PaymentId={parseInt(params.id)}/></td>
                             <td><DeleteButton PaymentId={parseInt(params.id)}/></td>
+                            <DisplayApprove PaymentId={parseInt(params.id)}/>
                         </tr>
                     </tbody>
                 </table>
@@ -60,8 +70,14 @@ const Insurance = async ({ params }: Props) => {
                  <Modal PaymentId={parseInt(params.id)}/> */}
 
             </div>
-            <CancelMessageModal InsuranceCancelationId={parseInt(params.id)} PaymentId={parseInt(params.id)}/>
+            <InsuranceApproveFrm PaymentId={parseInt(params.id)}/>
+            <DisplayCancelInsurance PaymentId={parseInt(params.id)}/>
+            {displayCancele ?
+                  (<CancelMessageModal  PaymentId={parseInt(params.id)}/>):(
+                  <p></p>
+                  )      
 
+            }
         </div>
     );
 };

@@ -40,6 +40,25 @@ export const claimSideBarLink: SidebarLink[] = [
   label: "Logout",
 }
 ];
+
+export const damageEvaluatorLink: SidebarLink[] = [
+  {
+      imgURL: "/icons/dashboard.svg",
+      route: "/damageEvaluator",
+      label: "Dashboard",
+    },
+{
+  imgURL: "/icons/home.svg",
+  route: "/damageEvaluator/claim",
+  label: "Claim",
+},
+{
+  imgURL: "/icons/logout.svg",
+  route: "/api/auth/signout",
+  label: "Logout",
+}
+];
+
 export const adminSideBarLink: SidebarLink[] = [
 {
       imgURL: "/icons/dashboard.svg",
@@ -69,13 +88,33 @@ export const insuranveSideBarLink: SidebarLink[] = [
   label: "Insurance ",
 },
 {
+  imgURL: "/icons/message.svg",
+  route: "/insuranceOfficer/messages",
+  label: "Messages",
+},
+{
   imgURL: "/icons/logout.svg",
   route: "/api/auth/signout",
   label: "Logout",
-}
+},
+
 ];
 
 
-
-
-
+export const MobilesidebarLinks: SidebarLink[] = [
+  {
+    imgURL: "/icons/dashboard.svg",
+    route: "/myAccount",
+    label: "Dashboard",
+  },
+{
+imgURL: "/icons/home.svg",
+route: "/myAccount/proposalDisplay",
+label: "Proposal",
+},
+{
+imgURL: "/icons/insurance.svg",
+route: "/myAccount/ProofSubmit",
+label: "Insurance",
+}
+];

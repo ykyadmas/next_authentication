@@ -2,9 +2,20 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import React from 'react'
 import { FileText } from 'lucide-react';
+import DamageEvaluatorSearch from '../_comopnents/Search/ClaimSearch';
 
-const Proposal = async() => {
+const Proposal = async({searchParams}:{searchParams?:{
+  query?:string;
+  page?:number;
+}}) => {
+  const query=searchParams?.query
   const claim=await prisma.claimForm.findMany({
+    where:{
+      OR: [
+        { driverFullName: { contains: query, lte: 'insensitive' } },
+        { LicenceNo: { contains: query, lte: 'insensitive' } },
+      ],
+    },
     orderBy:{'createdAt':'desc'},
     include:{
       user:true,
@@ -14,6 +25,7 @@ const Proposal = async() => {
 
   return (
   <div className="overflow-x-auto">
+    <DamageEvaluatorSearch/>
  <table className="table">
            
  <thead>

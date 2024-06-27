@@ -4,7 +4,6 @@ import CancelMessageForm from './cancelMessage';
 
 interface Props{
   PaymentId:number,
-
 }
 const CancelMessageModal= ({PaymentId}:Props) => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -20,7 +19,7 @@ const CancelMessageModal= ({PaymentId}:Props) => {
 
   return (
     <div>
-      <button className="btn" onClick={openModal}>Request Claim</button>
+      <button className="btn" onClick={openModal}>Cancel Insurance</button>
       <dialog ref={modalRef} className="modal" open={showModal}>
         <div className="modal-box">
           <CancelMessageForm  PaymentId={PaymentId}/>

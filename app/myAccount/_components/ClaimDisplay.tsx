@@ -9,12 +9,12 @@ interface Props{
 } 
 
 const ClaimDisplay = async ({PaymentId}:Props) => {
-  const session = await getServerSession();
   const claims = await prisma.claimForm.findMany({
     where: { PaymentId },
     include: {
         user: true,
-        Payment: true
+        Payment: true,
+        damageEvaluator:true
     }
 });
   return (
@@ -42,9 +42,7 @@ const ClaimDisplay = async ({PaymentId}:Props) => {
           {claims.map((claim) => (
             <tr key={claim.id}>
               <td>
-                <Link className='hover:underline' href={`/myAccount/claim/${claim.id}`}>
                   {claim.id}
-                </Link>
               </td>
               <td>{claim.user?.firstName}</td>
               <td>{claim.user?.lastName}</td>
@@ -77,6 +75,7 @@ const ClaimDisplay = async ({PaymentId}:Props) => {
               <td>{claim.LicenceNo}</td>
               <td>{claim.time}</td>
               <td>{claim.createdAt?.toDateString()}</td>
+              <Link href={`/myAccount/claim/${claim.id}`}>Detail</Link>
             </tr>
           ))}
         </tbody>

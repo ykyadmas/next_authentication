@@ -16,10 +16,6 @@ const Insurance = async({proposalId}:Props) => {
         }
     })
 
-  //    {
-  //     return <NotFoundPage />;
-  // }
-
   if (display)
   return (
     <div>

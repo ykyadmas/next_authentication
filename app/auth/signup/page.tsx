@@ -51,7 +51,7 @@ const signup = () => {
   };
 
   return (
-    <section className='flex  bg-gradient-to-br from-yellow-950 via-pink-950 to-indigo-950'>
+    <section className='flex min-h-screen bg-slate-400'>
         <form  className='m-auto my-12 flex w-1/3 flex-col p-4' onSubmit={handleSubmit(saveUser)}>
         <input 
         {...register("firstName")}

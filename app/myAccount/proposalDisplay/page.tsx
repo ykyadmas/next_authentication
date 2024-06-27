@@ -23,14 +23,13 @@ const ProposalDisplay = async () => {
       <table className="table">
         <thead>
           <tr>
-            <th></th>
+            <th>Id</th>
             <th>User FirstName</th>
             <th>User LastName</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Model</th>
             <th>Chanssis No</th>
-
             <th>woreda</th>
             <th>kebele</th>
             <th>phoneNo</th>
@@ -40,29 +39,24 @@ const ProposalDisplay = async () => {
             <th>proposed Date</th>
             <th>Branch</th>
             <td>comprehensive </td>
-                            <td>thirdParty </td>
-                            <td>ondamage</td>
-                            <td>hirdPartyFireAndTheft</td>
+            <td>thirdParty </td>
+            <td>ondamage</td>
+            <td>thirdPartyFireAndTheft</td>
             <th>Created At</th>
           </tr>
         </thead>
         <tbody>
           {proposals.map((proposal) => (
             <tr key={proposal.id}>
-              <Link
-                className="hover:underline"
-                href={`/myAccount/proposalDisplay/${proposal.id}`}
-              >
-                <td>{proposal.id}</td>
-              </Link>
+               <td>
+               {proposal.id}
+              </td>
               <td>{proposal.user?.firstName}</td>
               <td>{proposal.user?.lastName}</td>
-              <td>{proposal.lastName}</td>
               <td>{proposal.firstName}</td>
               <td>{proposal.lastName}</td>
               <td>{proposal.model}</td>
               <td>{proposal.chassisNo}</td>
-
               <td>{proposal.woreda}</td>
               <td>{proposal.kebele}</td>
               <td>{proposal.phoneNo}</td>
@@ -71,12 +65,16 @@ const ProposalDisplay = async () => {
               <td>{proposal.endDate}</td>
               <td>{proposal.proposedDate}</td>
               <td>{proposal.branch}</td>
-              <td>{proposal.comprehensive ? 'Comprehensive' : ''}</td>
-                            <td>{proposal.thirdParty ? 'Third Party' : ''}</td>
-                            <td>{proposal.ondamage ? 'On Damage' : ''}</td>
-                            <td>{proposal.thirdPartyFireAndTheft ? 'Third Party Fire And Theft' : ''}</td>
-                            <td>{proposal.createdAt.toDateString()}</td>
-
+              <td>{proposal.comprehensive ? 'Comprehensive' : 'none'}</td>
+              <td>{proposal.thirdParty ? 'Third Party' : 'none'}</td>
+              <td>{proposal.ondamage ? 'On Damage' : 'none'}</td>
+              <td>{proposal.thirdPartyFireAndTheft ? 'Third Party Fire And Theft' : 'none'}</td>
+              <td>{proposal.createdAt.toDateString()}</td>
+              <Link
+                className="btn btn-primary hover:underline"
+                href={`/myAccount/proposalDisplay/${proposal.id}`}
+              >Detail
+                </Link>
             </tr>
           ))}
         </tbody>

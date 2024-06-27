@@ -22,8 +22,8 @@ if(!proposal)
 notFound();
   return (
     <div>
-    <div>
-    <table className="table">
+            <div className="overflow-x-auto ">
+            <table className="table">
     <thead>
          <th></th>
         <th>FirstName</th>

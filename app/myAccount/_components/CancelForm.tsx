@@ -32,11 +32,10 @@ const CancelForm = ({PaymentId}:Props) => {
   return (
    <div>
     <form onSubmit={handleForm}>
-    <h1>Driver</h1>
  
-<h1>Detail of Acciedent</h1>
+<h1>policy cancellation</h1>
 <label className="input input-bordered flex items-center gap-2">
-Cancelation date  
+ date  
 <input 
 
  {...register('cancilationDate')} 
@@ -45,14 +44,23 @@ className="grow"
 placeholder="Acident Date" />
 </label>
 <label className="input input-bordered flex items-center gap-2">
-cancelation Time
+Time
 <input 
  {...register('cancilationTime')} 
 type="time" 
 className="grow" 
 placeholder="Time" />
 </label>
-<button type='submit' className='btn btn-primary'>{isSubmitting ? "Submitting claim..." : "Submit claim"}</button>
+<label className="input input-bordered flex items-center gap-2">
+Reason Of cancellation
+<input 
+ {...register('reason')} 
+ 
+type="text" 
+className="grow" 
+placeholder="Write Your Reason" />
+</label>
+<button type='submit' className='btn btn-primary'>{isSubmitting ? "Submitting..." : "Submit"}</button>
     </form>
    </div>
   )

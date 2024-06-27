@@ -2,9 +2,22 @@ import React from 'react';
 import { prisma } from '@/lib/prisma';
 import NotFoundPage from '@/app/admin/_comopnents/NotFoundPage';
 import Link from 'next/link';
+import InsuranceSearch from '@/app/claimAdjuster/_comopnents/Search/ClaimSearch';
 
-const Insurance = async () => {
+const Insurance = async ({searchParams}:{searchParams?:{
+    query?:string;
+    page?:number;
+  }}) => {
+    const query=searchParams?.query
+
     const display = await prisma.payment.findMany({
+        where:{
+      
+            OR: [
+              { lastName: { contains: query, lte: 'insensitive' } },
+              { amount: { contains: query, lte: 'insensitive' } },
+            ],
+          },
         include: {
             user: true,
             proposal: true
@@ -16,6 +29,7 @@ const Insurance = async () => {
     return (
         <div>
             <div>
+                <InsuranceSearch/>
                 <table className="table">
                     <thead>
                         <tr>
